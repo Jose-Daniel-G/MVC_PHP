@@ -2,34 +2,28 @@
 
 class HomeController extends Controller
 {
-
     public function index()
     {
-        $module = isset($_GET['module']) ? $_GET['module'] : 'default'; // Determina el módulo a cargar
+        // Verificar autenticación del usuario (descomentado si es necesario)
+        // if (!$this->isUserAuthenticated()) {
+        //     header('Location: ' . URL . 'login');
+        //     exit();
+        // }
 
-        $dashboardModel = $this->model('DashboardModel');
+        $dashboardModel = $this->model('HomeModel');
         $totalUsuarios = $dashboardModel->getTotalUsuarios();
         $totalVentas = $dashboardModel->getTotalVentas();
         $ventasRecientes = $dashboardModel->getVentasRecientes();
         $usuarios = $dashboardModel->getUsuarios();
-
-        $this->view('home/index', [
+        
+        // Pasar todos los datos necesarios a la vista
+        $this->view('index', [
+            'module' => 'dashboard',
+            'view' => 'index',
             'totalUsuarios' => $totalUsuarios,
             'totalVentas' => $totalVentas,
             'ventasRecientes' => $ventasRecientes,
             'usuarios' => $usuarios
         ]);
-        // $data = [
-        //     'totalUsuarios' => $totalUsuarios,
-        //     'totalVentas' => $totalVentas,
-        //     'ventasRecientes' => $ventasRecientes,
-        //     'usuarios' => $usuarios
-        // ];
-        // // Cargar la vista principal con el contenido del módulo
-        // $this->view('home/index', [
-        //     'module' => $module,
-        //     'data' => $data
-        // ]);
     }
- 
 }

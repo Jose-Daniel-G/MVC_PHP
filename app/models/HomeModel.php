@@ -1,6 +1,6 @@
 <?php
 
-class DashboardModel {
+class HomeModel {
     private $db;
 
     public function __construct() {

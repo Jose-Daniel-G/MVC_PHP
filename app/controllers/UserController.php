@@ -4,14 +4,21 @@ class UserController extends Controller {
 
     // Mostrar la lista de usuarios
     public function index() {
-        // Cargar el modelo
-        $userModel = $this->model('UserModel');
+        $data = [
+            'module' => 'users',
+            'view' => 'index',
+            // 'users' => $this->getAllUsers(),
+        ];
 
-        // Obtener datos del modelo
-        $usuarios = $userModel->getAllUsers();
+        $this->view('index', $data);
+        // // Cargar el modelo
+        // $userModel = $this->model('UserModel');
 
-        // Pasar datos a la vista
-        $this->view('user/index', ['usuarios' => $usuarios]);
+        // // Obtener datos del modelo
+        // $usuarios = $userModel->getAllUsers();
+
+        // // Pasar datos a la vista
+        // $this->view('user/index', ['module' => 'users','view' => 'index','usuarios' => $usuarios]);
     }
 
     // Mostrar un formulario para crear un nuevo usuario

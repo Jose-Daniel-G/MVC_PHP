@@ -1,37 +1,39 @@
 <?php
 
-class App {
+class App
+{
     protected $controller = 'HomeController';
     protected $method = 'index';
     protected $params = [];
 
-    public function __construct() {
+    public function __construct()
+    {
+        $routes = require 'app/routes.php'; // Cargar las rutas desde routes.php
+        
         $url = $this->parseUrl();
 
-        // Verifica si la URL tiene un controlador específico
-        if(isset($url[0]) && file_exists('app/controllers/' . $url[0] . '.php')) {
-            $this->controller = $url[0];
-            unset($url[0]);
+        $route = $url ? implode('/', $url) : ''; // Convierte la URL en una cadena de ruta
+
+        // Verifica si la ruta existe en la matriz de rutas
+        if (array_key_exists($route, $routes)) {
+            $this->controller = $routes[$route][0];
+            $this->method = $routes[$route][1];
         }
 
+        // Cargar el controlador
         require_once 'app/controllers/' . $this->controller . '.php';
         $this->controller = new $this->controller;
 
-        // Verifica si la URL tiene un método específico
-        if(isset($url[1])) {
-            if(method_exists($this->controller, $url[1])) {
-                $this->method = $url[1];
-                unset($url[1]);
-            }
-        }
-
-        $this->params = $url ? array_values($url) : [];
+        // Llamar al método con los parámetros si existen
+        $this->params = $url ? array_slice($url, 2) : [];
         call_user_func_array([$this->controller, $this->method], $this->params);
     }
 
-    public function parseUrl() {
-        if(isset($_GET['url'])) {
+    public function parseUrl()
+    {
+        if (isset($_GET['url'])) {
             return explode('/', filter_var(rtrim($_GET['url'], '/'), FILTER_SANITIZE_URL));
         }
+        return [];
     }
 }
