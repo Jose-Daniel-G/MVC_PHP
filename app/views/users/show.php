@@ -1,32 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show User</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="<?= URL ?>public/css/style.css" rel="stylesheet">
-</head>
-<body>
-    <?php include_once 'app/views/templates/navbar.php'; ?>
-    <div class="container-fluid">
-        <div class="row flex-nowrap">
-            <?php include_once 'app/views/templates/sidebar.php'; ?>
-            <div class="col py-3">
-                <h1 class="text-center mt-4">Show User</h1>
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title"><?= $data['user']['name'] ?></h5>
-                        <p class="card-text">Email: <?= $data['user']['email'] ?></p>
-                        <a href="<?= URL ?>user/edit/<?= $data['user']['id'] ?>" class="btn btn-warning">Edit</a>
-                        <a href="<?= URL ?>user/delete/<?= $data['user']['id'] ?>" class="btn btn-danger">Delete</a>
-                        <a href="<?= URL ?>user/index" class="btn btn-secondary">Back</a>
-                    </div>
-                </div>
+<!-- resources/views/user/show.php -->
+<div class="container mt-4">
+    <h1>Detalles del Usuario</h1>
+    <div class="card">
+        <div class="card-header">
+            Usuario #<?= htmlspecialchars($user->id) ?>
+        </div>
+        <div class="card-body">
+            <h5 class="card-title"><?= htmlspecialchars($user->name) ?></h5>
+            <p class="card-text"><strong>Email:</strong> <?= htmlspecialchars($user->email) ?></p>
+            <p class="card-text"><strong>Created At:</strong> <?= htmlspecialchars($user->created_at) ?></p>
+            <p class="card-text"><strong>Updated At:</strong> <?= htmlspecialchars($user->updated_at) ?></p>
+            <a href="<?= URL ?>users/edit/<?= htmlspecialchars($user->id) ?>" class="btn btn-primary">Editar</a>
+            <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Eliminar</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal de Eliminación -->
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Eliminar Usuario</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas eliminar a <?= htmlspecialchars($user->name) ?>?
+            </div>
+            <div class="modal-footer">
+                <form action="<?= URL ?>users/delete/<?= htmlspecialchars($user->id) ?>" method="POST">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
             </div>
         </div>
     </div>
-    <?php include_once 'app/views/templates/footer.php'; ?>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+</div>

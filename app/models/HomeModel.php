@@ -12,7 +12,7 @@ class HomeModel {
     }
 
     public function getTotalUsuarios() {
-        $result = $this->db->query("SELECT COUNT(*) AS total FROM usuarios");
+        $result = $this->db->query("SELECT COUNT(*) AS total FROM users");
         return $result->fetch_assoc()['total'];
     }
 
@@ -27,7 +27,7 @@ class HomeModel {
     }
 
     public function getUsuarios() {
-        $result = $this->db->query("SELECT * FROM usuarios");
+        $result = $this->db->query("SELECT * FROM users");
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 }

@@ -1,11 +1,4 @@
 <div class="sidebar d-flex flex-column flex-shrink-0 p-3 text-white bg-dark" style="width: 280px;">
-    <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-        <svg class="bi me-2" width="40" height="32">
-            <!-- Replace with your SVG icon or use <i> tags for FontAwesome -->
-            <use xlink:href="#bootstrap"></use>
-        </svg>
-        <span class="fs-4">Sidebar</span>
-    </a>
     <hr>
     <ul class="nav nav-pills flex-column mb-auto">
         <li class="nav-item">
@@ -16,7 +9,7 @@
         </li>
         <li class="nav-item">
             <a class="nav-link <?= isset($data['module']) && $data['module'] === 'products' ? 'active' : '' ?>" href="<?= URL ?>products">Products</a>
-        </li>
+        </li>   
         <li class="nav-item">
             <a class="nav-link <?= isset($data['module']) && $data['module'] === 'customers' ? 'active' : '' ?>" href="<?= URL ?>customers">Customers</a>
         </li>
@@ -37,4 +30,5 @@
             <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
     </div>
+    
 </div>

@@ -1,33 +1,35 @@
 <?php
 
-class UserController extends Controller {
+class UserController extends Controller
+{
 
     // Mostrar la lista de usuarios
-    public function index() {
+    public function index()
+    {
+        // // Cargar el modelo
+        $userModel = $this->model('UserModel');
+
+        // // Obtener datos del modelo
+        $users = $userModel->getAllUsers();
+        // echo var_dump( $users);
         $data = [
             'module' => 'users',
             'view' => 'index',
-            // 'users' => $this->getAllUsers(),
+            'users' => $users,
         ];
-
+        // echo var_dump( $data);
         $this->view('index', $data);
-        // // Cargar el modelo
-        // $userModel = $this->model('UserModel');
-
-        // // Obtener datos del modelo
-        // $usuarios = $userModel->getAllUsers();
-
-        // // Pasar datos a la vista
-        // $this->view('user/index', ['module' => 'users','view' => 'index','usuarios' => $usuarios]);
     }
 
     // Mostrar un formulario para crear un nuevo usuario
-    public function create() {
+    public function create()
+    {
         $this->view('user/create');
     }
 
     // Manejar la solicitud para crear un nuevo usuario
-    public function store() {
+    public function store()
+    {
         // Obtener datos del formulario
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -43,7 +45,8 @@ class UserController extends Controller {
     }
 
     // Mostrar los detalles de un usuario
-    public function show($id) {
+    public function show($id)
+    {
         // Cargar el modelo
         $userModel = $this->model('UserModel');
 
@@ -61,7 +64,8 @@ class UserController extends Controller {
     }
 
     // Mostrar un formulario para editar un usuario
-    public function edit($id) {
+    public function edit($id)
+    {
         // Cargar el modelo
         $userModel = $this->model('UserModel');
 
@@ -79,7 +83,8 @@ class UserController extends Controller {
     }
 
     // Manejar la solicitud para actualizar un usuario
-    public function update($id) {
+    public function update($id)
+    {
         // Obtener datos del formulario
         $name = $_POST['name'];
         $email = $_POST['email'];
@@ -95,7 +100,8 @@ class UserController extends Controller {
     }
 
     // Manejar la solicitud para eliminar un usuario
-    public function delete($id) {
+    public function delete($id)
+    {
         // Cargar el modelo
         $userModel = $this->model('UserModel');
 

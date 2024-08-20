@@ -49,7 +49,7 @@
                                         <?php foreach ($data['usuarios'] as $usuario): ?>
                                             <tr>
                                                 <td><?= $usuario['id'] ?></td>
-                                                <td><?= $usuario['nombre'] ?></td>
+                                                <td><?= $usuario['name'] ?></td>
                                                 <td><?= $usuario['email'] ?></td>
                                             </tr>
                                         <?php endforeach; ?>
@@ -61,3 +61,4 @@
                 </div>
 
             </div> <!-- Fin del Contenido Principal -->
+            

@@ -1,5 +1,6 @@
 body {
     background-color: #f4f4f4;
+    
 }
 
 .card {
@@ -12,7 +13,56 @@ body {
     font-weight: bold;
 }
 /* Ejemplo de estilo para el sidebar */
+/* resources/css/dashboard.css */
+/* styles.css */
+
+/* resources/css/dashboard.css */
+
+/* resources/css/dashboard.css */
+
 .sidebar {
-    height: 100vh;
-    background-color: #f8f9fa;
+    width: 250px; /* Ajusta el ancho según sea necesario */
+    height: 90vh; /* Asegúrate de que el sidebar ocupa toda la altura de la ventana */
+    background-color: #343a40; /* Color de fondo oscuro de Bootstrap */
+    /*position: fixed; /* Fijar el sidebar en la posición */
+    top: 0;
+    left: 0;
+    z-index: 1000; /* Asegúrate de que esté por encima del contenido */
+    
+}
+.sidebar a {
+    color: inherit; /* Hereda el color del texto del contenedor */
+    text-decoration: none; /* Quitar el subrayado */
+}
+.navbar-brand {
+    width: 250px; /* Asegúrate de que coincida con el ancho del sidebar */
+    text-align: center; /* Centra el texto dentro del enlace */
+    display: block; /* Asegúrate de que el enlace ocupe todo el ancho especificado */
+}
+
+/* Ajusta el padding del navbar para que el contenido no se desborde */
+.navbar {
+    padding-left: 0; /* Elimina el padding izquierdo */
+    padding-right: 0; /* Elimina el padding derecho */
+}
+
+#sidebar .nav-link {
+    font-size: 1.1rem;
+}
+
+#sidebar .nav-link.active {
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+a {
+    /*color: black; /* Cambia el color de los enlaces a negro o cualquier color que prefieras */
+    text-decoration: none; /* Quita el subrayado de los enlaces */
 }
